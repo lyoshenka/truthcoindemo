@@ -1,0 +1,7 @@
+Package: truthcoindemo
+Type: Package
+Title: TruthCoin Demo
+Version: 0.1.0
+Date: 2014-09-05
+Imports:
+  ggplot2
