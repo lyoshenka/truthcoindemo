@@ -4,10 +4,6 @@
  #   2] only allows an efficient number of most-traded-upon-Decisions.
 
 
-try(setwd("~/GitHub/Truthcoin/lib"))
-# To my knowledge, R does not feature 'automatic working directories' unless it is being run as a script
-
-source("consensus/CustomMath.r")
 
 ## Functions:
 
