@@ -71,6 +71,8 @@ SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
 # print(SvdResults$Original)
 # print(" ")
 # print("Agents")
+print("Results: ")
+
 print(" ")
 print(" ")
 print(" ")

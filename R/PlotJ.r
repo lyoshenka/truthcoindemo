@@ -5,8 +5,8 @@ if(!exists("Factory")) print("You have not loaded ConsensusMechanism.r")
 
 PlotJ <- function(M,Scales,Title="Plot of Judgement Space") { 
   
-  require(ggplot2)
-  require(reshape2)
+  suppressMessages( require(ggplot2) )
+  suppressMessages( require(reshape2) )
   
 #  # Give unique names
 #  row.names(M) <- paste("Voter",1:nrow(M))
