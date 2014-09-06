@@ -1,21 +1,4 @@
 
-lines <- '
-Label,QID1,QID2,QID3,QID4,QID5,QID6,QID7,QID8,QID9,QID10
-Qtext,"In the United States, following the 2012 November / elections, was Barack Obama elected US President?","In the United States, following the 2012 November / elections, was Mitt Romney elected US President?","In the United States, following the 2012 November / elections, did the Democratic Party control 51...","In the United States, following the 2012 November / elections, did the Republican Party control 218...","In the United States, following the 2012 November / elections, how many seats in the House of Repre...","During the 2011-2012 United States football season, did the New / England Patriots (AFC) win the 20...","During the 2013-2014 United States football season, did the Denver / Broncos (AFC) win the 2014 Sup...","On June 27th, 2014, was the closing price of the Dow Jones / Industrial Average (INDEXDJX:.DJI) abo...","On June 27th, 2014, was the closing price of the SPDR Gold Trust / (ETF) (NYSEARCA:GLD) above 120?","On July 9th, 2014, what was the closing price of the Dow Jones / Industrial Average (INDEXDJX:.DJI,..."
-Qtype,B,B,B,B,S,B,B,B,B,S
-Min,0,0,0,0,0,0,0,0,0,8000
-Max,1,1,1,1,538,1,1,1,1,20000
-Voter 1,1,0,1,1,242,0,0,1,1,16985.61
-Voter 2,0,0.5,0.5,,240,0,0,1,0,16985.61
-Voter 3,1,0,1,1,242,0,0,1,1,
-'
-
-print("Loading data..")
-con <- textConnection(lines)
-Data <- read.csv(con, stringsAsFactors= FALSE, row.names=1)
-close(con)
-
-
 ToMatrix <- function(DF) {
   RowNames <- row.names(DF)
   DFn <- data.frame ( lapply( DF, as.numeric) ) # make all observations numbers
@@ -25,8 +8,12 @@ ToMatrix <- function(DF) {
 }
 
 
-truthcoindemo <- function(Data) {
+truthcoindemo <- function(csvdata) {
 
+print("Loading data..")
+con <- textConnection(csvdata)
+Data <- read.csv(con, stringsAsFactors= FALSE, row.names=1)
+close(con)
 print("Load Complete.")
 print(" ")
 
@@ -78,22 +65,25 @@ ScaleData[1,] <- Scaled
 
 # Get the Resuls
 print("Calculating Results..")
-SvdResults <- Factory(RescaledVoteMatrix,Scales = ScaleData)
+SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
 
-print("Writing Output .csvs..")
+print("Original")
+print(SvdResults$Original)
 print(" ")
-
-#write.csv(SvdResults$Original, file="demo/output/OriginalVoteMatrix.csv")
-#write.csv(SvdResults$Agents, file="demo/output/agents.csv")
-#write.csv(SvdResults$Decisions, file="demo/output/decisions.csv")
+print("Agents")
+print(SvdResults$Agents)
+print(" ")
+print("Decisions")
+print(SvdResults$Decisions)
+print(" ")
 
 print("Making Plot..")
 Plot <- PlotJ(RescaledVoteMatrix, Scales = ScaleData)
 
 
-svg("demo/output/plot.svg",width = 8.5,height = 11)
+#svg("demo/output/plot.svg",width = 8.5,height = 11)
 Plot
-dev.off()
+#dev.off()
 
 print("Plot Complete.")
 

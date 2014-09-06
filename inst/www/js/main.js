@@ -1,20 +1,17 @@
 $(function(){
 
   //because identity is in base
-  ocpu.seturl("//public.opencpu.org/ocpu/library/base/R")
+  ocpu.seturl("//lyoshenka.ocpu.io/truthcoindemo/R")
 
   //actual handler
   $("#submitbutton").on("click", function(){
 
-    //arguments
-    var mysnippet = new ocpu.Snippet($("#code").val());
-    
     //disable button
     $("button").attr("disabled", "disabled");
 
     //perform the request
-    var req = ocpu.call("identity", {
-      "x": mysnippet
+    var req = ocpu.call("truthcoindemo", {
+      "csvdata": $("#data").val()
     }, function(session){
         session.getObject().always(function(data){ 
           console.log(data);

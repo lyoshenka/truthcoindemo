@@ -1,21 +1,21 @@
 
 # Display of VoteMatrix Data
 
-if(!require(ggplot2)) install.packages('ggplot2')
-if(!require(reshape2)) install.packages('reshape2')
+#if(!require(ggplot2)) install.packages('ggplot2')
+#if(!require(reshape2)) install.packages('reshape2')
 
 if(!exists("Factory")) print("You have not loaded ConsensusMechanism.r")
 
 PlotJ <- function(M,Scales,Title="Plot of Judgement Space") { 
   
-  require(ggplot2)
-  require(reshape2)
+#  require(ggplot2)
+#  require(reshape2)
   
   # Give unique names
   row.names(M) <- paste("Voter",1:nrow(M))
   
   # Use the SVD-Consensus
-  Results <- Factory(M, Scales = ScaleData, CatchP=0)
+  Results <- Factory(M, Scales = Scales, CatchP=0)
   
   # Get Dimensions and Labels (who voted for what?)
   DF <- melt(Results[["Filled"]])
