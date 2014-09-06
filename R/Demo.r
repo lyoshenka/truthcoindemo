@@ -10,26 +10,26 @@ ToMatrix <- function(DF) {
 
 truthcoindemo <- function(csvdata) {
 
-print("Loading data..")
+# print("Loading data..")
 con <- textConnection(csvdata)
 Data <- read.csv(con, stringsAsFactors= FALSE, row.names=1)
 close(con)
-print("Load Complete.")
-print(" ")
+# print("Load Complete.")
+# print(" ")
 
 ## Get VoteMatrix ##
-print("Getting Votes..")
+# print("Getting Votes..")
 
 # Remove header info
 VoteData <- Data[-1:-4,]
 VoteMatrix <- ToMatrix(VoteData)
 
-print(VoteMatrix)
-print(" ")
+# print(VoteMatrix)
+# print(" ")
 
 
 ## Rescale ##
-print("Rescaling the Scaled Decisions..")
+# print("Rescaling the Scaled Decisions..")
 
 # Scaled claims must become range(0,1)
 
@@ -50,8 +50,8 @@ for(i in 1:ncol(ScaleMatrix)) { # for each scaled decision
   RescaledVoteMatrix[ , colnames(RescaledVoteMatrix)==ThisQ ] <- RescaledColumn # Overwrite
 }
 
-print("Rescale Complete.")
-print(" ")
+# print("Rescale Complete.")
+# print(" ")
 
 
 ## Do Computations ##
@@ -64,18 +64,21 @@ ScaleData <- matrix( c( rep(FALSE,ncol(RescaledVoteMatrix)),
 ScaleData[1,] <- Scaled
 
 # Get the Resuls
-print("Calculating Results..")
-SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
-
-print("Original")
-print(SvdResults$Original)
-print(" ")
-print("Agents")
+# print("Calculating Results..")
+# SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
+# 
+# print("Original")
+# print(SvdResults$Original)
+# print(" ")
+# print("Agents")
 print(SvdResults$Agents)
 print(" ")
-print("Decisions")
-print(SvdResults$Decisions)
 print(" ")
+print(" ")
+print(" ")
+# print("Decisions")
+print(SvdResults$Decisions)
+# print(" ")
 
 print(PlotJ(RescaledVoteMatrix, Scales = ScaleData))
 

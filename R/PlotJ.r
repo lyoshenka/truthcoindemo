@@ -8,8 +8,8 @@ PlotJ <- function(M,Scales,Title="Plot of Judgement Space") {
   require(ggplot2)
   require(reshape2)
   
-  # Give unique names
-  row.names(M) <- paste("Voter",1:nrow(M))
+#  # Give unique names
+#  row.names(M) <- paste("Voter",1:nrow(M))
   
   # Use the SVD-Consensus
   Results <- Factory(M, Scales = Scales, CatchP=0)
