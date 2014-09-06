@@ -62,9 +62,7 @@ ScaleData <- matrix( c( rep(FALSE,ncol(RescaledVoteMatrix)),
               rep(1,ncol(RescaledVoteMatrix))), 3, byrow=TRUE, dimnames=list(c("Scaled","Min","Max"),colnames(RescaledVoteMatrix)) )
 
 ScaleData[1,] <- Scaled
-
 # Get the Results
-options(digits = 4) # easier to read
 # print("Calculating Results..")
 SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
 # 
@@ -78,14 +76,14 @@ print(" ")
 print(" ")
 print(" ")
 print(" ")
-print(SvdResults$Agents)
+print( round(SvdResults$Agents, 4) )
 
 print(" ")
 print(" ")
 print(" ")
 print(" ")
 # print("Decisions")
-print(SvdResults$Decisions)
+print( round(SvdResults$Decisions, 4) )
 # print(" ")
 
 print(PlotJ(RescaledVoteMatrix, Scales = ScaleData))
