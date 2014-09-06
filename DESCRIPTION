@@ -4,6 +4,6 @@ Title: TruthCoin Demo
 Version: 0.1.0
 Date: 2014-09-05
 Author: lyoshenka
-Maintainer: lyoshenka
+Maintainer: lyoshenka <lyoshenka@gmail.com>
 License: WTFPL
 Imports: ggplot2, reshape2
