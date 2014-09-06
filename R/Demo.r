@@ -64,6 +64,7 @@ ScaleData <- matrix( c( rep(FALSE,ncol(RescaledVoteMatrix)),
 ScaleData[1,] <- Scaled
 
 # Get the Results
+options(digits = 4) # easier to read
 # print("Calculating Results..")
 SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
 # 
