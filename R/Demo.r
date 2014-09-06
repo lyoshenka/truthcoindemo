@@ -70,7 +70,7 @@ SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
 # print(SvdResults$Original)
 # print(" ")
 # print("Agents")
-print("Results: ")
+# print("Results: ")
 
 cat("\n\n\n\n")
 cat(" * Agent Payoffs * \n")
@@ -92,6 +92,7 @@ cat(" Software's interpretation of what truly happened ('DecisionOutcome.Final')
 # print("Decisions")
 # Cut things back for a simpler demo.
 DecisDisplay <- SvdResults$Decisions[c(1,2,4,8),]
+row.names(DecisDisplay) <- c("Loading1","Raw.Out","Cert.","Outcome")
 print( round(DecisDisplay, 4) )
 # print(" ")
 
