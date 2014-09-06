@@ -10,7 +10,7 @@ $(function(){
     $("button").attr("disabled", "disabled");
 
     //perform the request
-    var req = ocpu.call("truthcoindemo", {
+    var req = $('#plot').rplot("truthcoindemo", {
       "csvdata": $("#data").val()
     }, function(session){
         session.getObject().always(function(data){ 

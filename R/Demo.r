@@ -77,16 +77,7 @@ print("Decisions")
 print(SvdResults$Decisions)
 print(" ")
 
-print("Making Plot..")
-Plot <- PlotJ(RescaledVoteMatrix, Scales = ScaleData)
+PlotJ(RescaledVoteMatrix, Scales = ScaleData)
 
-
-#svg("demo/output/plot.svg",width = 8.5,height = 11)
-Plot
-#dev.off()
-
-print("Plot Complete.")
-
-print("Done!")
-
+invisible()
 }
