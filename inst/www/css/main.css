@@ -7,9 +7,15 @@
   overflow-x: auto;
 }
 
+#data .htDimmed {
+  background-color: #eee;
+  color: #666;
+}
 #data td:not(.htDimmed) {
-  color: #0c3c64;
   color: #0a5a9c;
+}
+#data tr:not(:first-child):not(:nth-child(2)) td:not(:first-child) {
+  text-align: right;
 }
 
 .footer {
