@@ -7,7 +7,6 @@ $(function(){
   $("#data").handsontable({
     colWidths: 85,
     minSpareRows: 1,
-    minSpareCols: 1,
     cells: function (row, col, prop) {
       var cellProperties = {};
       if (row < 5) {
@@ -31,7 +30,7 @@ $(function(){
   $("#submitbutton").on("click", function(){
 
     var table = $("#data").handsontable('getInstance'),
-        data = table.getData(0,0,table.countRows()-2,table.countCols()-2);
+        data = table.getData(0,0,table.countRows()-2,table.countCols()-1);
 
     //disable button
     $("button").attr("disabled", "disabled");
