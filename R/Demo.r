@@ -78,10 +78,10 @@ cat(" Change in proportional ownership ('reputation' or 'Rep') as a result of th
 
 # Cut things back for a simpler demo.
 Agents <- SvdResults$Agents
-Agents$NewRep <- Agents$RowBonus
-Agents$Change <- Agents$NewRep - Agents$OldRep
+Agents <- cbind(Agents, "NewRep"=Agents[,"RowBonus"], "Change"=Agents[,"RowBonus"]-Agents[,"OldRep"])
+Agents
 AgentsDisplay <- Agents[,c("OldRep","NewRep","Change")]
-names(AgentsDisplay) <- c("OriginalReputation", "NewReputation", "NetChange")
+colnames(AgentsDisplay) <- c("OriginalReputation", "NewReputation", "NetChange")
 
 print( round(AgentsDisplay, 4) )
 
@@ -91,7 +91,7 @@ cat(" Software's interpretation of what truly happened ('DecisionOutcome.Final')
 
 # print("Decisions")
 # Cut things back for a simpler demo.
-DecisDisplay <- SvdResults$Decisions[c(2,1,4,8),]
+DecisDisplay <- SvdResults$Decisions[c(1,2,4,8),]
 print( round(DecisDisplay, 4) )
 # print(" ")
 
