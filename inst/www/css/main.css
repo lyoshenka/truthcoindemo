@@ -1,5 +1,8 @@
 #plot {
   height:400px;
-  width: 600px;
   border: solid 1px black;
+}
+
+#data {
+  overflow-x: auto;
 }
