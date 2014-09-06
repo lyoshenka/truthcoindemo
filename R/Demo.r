@@ -76,15 +76,38 @@ cat("\n\n\n\n")
 cat(" * Agent Payoffs * \n")
 cat(" Change in proportional ownership ('reputation' or 'Rep') as a result of this VoteMatrix: \n\n")
 
-print( round(SvdResults$Agents, 4) )
+# Cut things back for a simpler demo.
+Agents <- SvdResults$Agents
+Agents$NewRep <- Agents$RowBonus
+Agents$Change <- Agents$NewRep - Agents$OldRep
+AgentsDisplay <- Agents[,c("OldRep","NewRep","Change")]
+names(AgentsDisplay) <- c("OriginalReputation", "NewReputation", "NetChange")
+
+print( round(AgentsDisplay, 4) )
 
 cat("\n\n\n\n")
 cat(" * Decisions-Resolution * \n")
 cat(" Software's interpretation of what truly happened ('DecisionOutcome.Final'): \n\n")
 
 # print("Decisions")
-print( round(SvdResults$Decisions, 4) )
+# Cut things back for a simpler demo.
+DecisDisplay <- SvdResults$Decisions[c(2,1,4,8),]
+print( round(DecisDisplay, 4) )
 # print(" ")
+
+ScaledOutcomes <- DecisDisplay[4,] # They'll be scaled soon
+for(i in 1:ncol(ScaleMatrix)) {
+
+  ThisName <- colnames(ScaleMatrix)[i]
+  ThisMin <- ScaleMatrix["Min",ThisName]
+  ThisMax <- ScaleMatrix["Max",ThisName]
+  
+  ScaledOutcomes[ThisName] <- ( ScaledOutcomes[ThisName] * (ThisMax-ThisMin) ) + ThisMin
+}
+
+cat("\n\n")
+print(ScaledOutcomes)
+
 
 cat("\n\n\n")
 print(PlotJ(RescaledVoteMatrix, Scales = ScaleData))
