@@ -25,6 +25,8 @@ $(function(){
       ["Voter 3","1","0","1","1","242","0","0","1","1",""]
     ]
   });
+  
+//  $('#data table').addClass('table'); // add bootstrap styles to table
 
   //actual handler
   $("#submitbutton").on("click", function(){
