@@ -16,7 +16,7 @@ $(function(){
     },
     data: [
       ["Label","QID1","QID2","QID3","QID4","QID5","QID6","QID7","QID8","QID9","QID10"],
-      ["Qtext","In the United States, following the 2012 November / elections, was Barack Obama elected US President?","In the United States, following the 2012 November / elections, was Mitt Romney elected US President?","In the United States, following the 2012 November / elections, did the Democratic Party control 51...","In the United States, following the 2012 November / elections, did the Republican Party control 218...","In the United States, following the 2012 November / elections, how many seats in the House of Repre...","During the 2011-2012 United States football season, did the New / England Patriots (AFC) win the 20...","During the 2013-2014 United States football season, did the Denver / Broncos (AFC) win the 2014 Sup...","On June 27th, 2014, was the closing price of the Dow Jones / Industrial Average (INDEXDJX:.DJI) abo...","On June 27th, 2014, was the closing price of the SPDR Gold Trust / (ETF) (NYSEARCA:GLD) above 120?","On July 9th, 2014, what was the closing price of the Dow Jones / Industrial Average (INDEXDJX:.DJI,..."],
+      ["Qtext","2012 Obama Won","2012 Romney Won","2012 Dem Majority","2012 Rep Majority","2012 Rep Seats","2012 Patriots Superbowl","2014 Broncos Superbowl","06/27/2014 DJIA Price","06/27/2014 GLD 120+","07/09/2014 DJIA Price"],
       ["Qtype","B","B","B","B","S","B","B","B","B","S"],
       ["Min","0","0","0","0","0","0","0","0","0","8000"],
       ["Max","1","1","1","1","538","1","1","1","1","20000"],
