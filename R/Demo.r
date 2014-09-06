@@ -77,7 +77,7 @@ print("Decisions")
 print(SvdResults$Decisions)
 print(" ")
 
-PlotJ(RescaledVoteMatrix, Scales = ScaleData)
+print(PlotJ(RescaledVoteMatrix, Scales = ScaleData))
 
 invisible()
 }
