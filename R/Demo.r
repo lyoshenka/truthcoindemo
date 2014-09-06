@@ -87,7 +87,7 @@ print( round(AgentsDisplay, 4) )
 
 cat("\n\n\n\n")
 cat(" * Decisions-Resolution * \n")
-cat(" Software's interpretation of what truly happened ('DecisionOutcome.Final'): \n\n")
+cat(" Software's interpretation of what truly happened ('Outcome'): \n\n")
 
 # print("Decisions")
 # Cut things back for a simpler demo.
@@ -105,9 +105,9 @@ for(i in 1:ncol(ScaleMatrix)) {
   
   ScaledOutcomes[ThisName] <- ( ScaledOutcomes[ThisName] * (ThisMax-ThisMin) ) + ThisMin
 }
-
+FormattedScaledOutcomes <- matrix(ScaledOutcomes,nrow = 1,dimnames = list("Outcome",names(ScaledOutcomes)))
 cat("\n\n")
-print(ScaledOutcomes)
+print(FormattedScaledOutcomes)
 
 
 cat("\n\n\n")
