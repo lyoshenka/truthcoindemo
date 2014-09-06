@@ -65,7 +65,7 @@ ScaleData[1,] <- Scaled
 
 # Get the Resuls
 # print("Calculating Results..")
-# SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
+SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
 # 
 # print("Original")
 # print(SvdResults$Original)
