@@ -3,6 +3,7 @@ Type: Package
 Title: TruthCoin Demo
 Version: 0.1.0
 Date: 2014-09-05
-Imports:
-  ggplot2
-  reshape2
+Author: lyoshenka
+Maintainer: lyoshenka
+License: WTFPL
+Imports: ggplot2, reshape2
