@@ -16,7 +16,7 @@ $(function(){
     },
     data: [
       ["Label","QID1","QID2","QID3","QID4","QID5","QID6","QID7","QID8","QID9","QID10"],
-      ["Qtext","2012 Obama Won","2012 Romney Won","2012 Dem Majority","2012 Rep Majority","2012 Rep Seats","2012 Patriots Superbowl","2014 Broncos Superbowl","06/27/2014 DJIA Price","06/27/2014 GLD 120+","07/09/2014 DJIA Price"],
+      ["Qtext","2012 Obama Won","2012 Romney Won","2012 Dem Senate Majority","2012 Rep House Majority","2012 Rep House Seats","2012 Patriots Superbowl","2014 Broncos Superbowl","06/27/2014 DJIA 16000+","06/27/2014 GLD 120+","07/09/2014 DJIA Price"],
       ["Qtype","B","B","B","B","S","B","B","B","B","S"],
       ["Min","0","0","0","0","0","0","0","0","0","8000"],
       ["Max","1","1","1","1","538","1","1","1","1","20000"],
