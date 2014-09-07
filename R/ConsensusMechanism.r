@@ -38,13 +38,15 @@ GetRewardWeights <- function(M,Rep=NULL,alpha=.1,Verbose=FALSE) {
   #Because the average state of Decisions is a function both of randomness and the way the Decisions are worded, I quickly check to see which
   #  of the two possible 'new' reputation vectors had more opinion in common with the original 'old' reputation.
   #  I originally tried doing this using math but after multiple failures I chose this ad hoc way.
+  
+  # The two options
   Set1 <-  FirstScore+abs(min(FirstScore))
   Set2 <-  FirstScore-max(FirstScore)   
   
   Old <- Rep%*%M
   
-  New1 <- GetWeight(Set1%*%M)
-  New2 <- GetWeight(Set2%*%M)
+  New1 <- GetWeight(Set1)%*%M
+  New2 <- GetWeight(Set2)%*%M
   
   #Difference in Sum of squared errors, if >0, then New1 had higher errors (use New2), and conversely if <0 use 1.
   RefInd <- sum( (New1-Old)^2) -  sum( (New2-Old)^2)
@@ -550,3 +552,36 @@ Chain <- function(X,Scales,N=2,ThisRep) {
   return(Output)
 }
 
+# Double-Factory (much more reliable)
+
+DoubleFactory <- function(X, Scales, Rep, CatchP=.1, MaxRow=5000, Phi=.65, Verbose=FALSE) {
+  # see http://forum.truthcoin.info/index.php/topic,102.msg289.html#msg289
+  
+  #Fill the default reputations (egalitarian) if none are provided...unrealistic and only for testing.
+  if(missing(Rep)) { Rep <- ReWeight(rep(1,nrow(X)))
+                     if(Verbose) print("Reputation not provided...assuming equal influence.")
+  }
+  
+  #******************
+  #Fill the default scales (binary) if none are provided. In practice, this would also never be used.
+  if(missing(Scales)) { Scales <- matrix( c( rep(FALSE,ncol(X)),
+                                             rep(0,ncol(X)),
+                                             rep(1,ncol(X))), 3, byrow=TRUE, dimnames=list(c("Scaled","Min","Max"),colnames(X)) )
+                        if(Verbose) print("Scales not provided...assuming binary (0,1).")
+  }
+  
+  WaveOne <- Factory(X,Scales,Rep,CatchP,MaxRow,Verbose)
+  
+  Safe  <- ( WaveOne$Decisions["Certainty",] ) >= Phi # all those contracts which were unanimous for a subset of proportion ("Phi")
+  
+  if(Verbose) {
+    print(" Wave One Complete.")
+    print( sum(Safe)/ncol(X) )
+  }
+  
+  WaveTwo <- Factory( X[,Safe] ,
+                      Scales[,Safe],
+                      Rep,CatchP,MaxRow,Verbose)
+  
+  return(WaveTwo)
+}
