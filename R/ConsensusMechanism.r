@@ -11,20 +11,9 @@ source("consensus/CustomMath.r")
 
 ## Functions:
 
-DemocracyRep <- function(X) {
-  # Run this if no Reputations were given...gives everyone an equal share and equal vote.
-  Rep <- ReWeight(rep(1,nrow(X)))
-}
 
 
-BinaryScales <- function(X) {
-  # Run this if no Scales were provided..assumes none were Scaled, all are Binary (0 or 1).
-  Scales <- matrix( c( rep(FALSE,ncol(X)),
-                       rep(0,ncol(X)),
-                       rep(1,ncol(X))), 3, byrow=TRUE, dimnames=list(c("Scaled","Min","Max"),colnames(X)) )
-}
-
-GetRewardWeights <- function(M, Rep=DemocracyRep(M), alpha=.1, Verbose=FALSE) {
+GetRewardWeights <- function(M, Rep, alpha=.1, Verbose=FALSE) {
   #Calculates the new reputations using WPCA
   
   if(Verbose) {
@@ -150,7 +139,7 @@ GetRewardWeights <- function(M, Rep=DemocracyRep(M), alpha=.1, Verbose=FALSE) {
 # [1] 0.1000000 0.1068146 0.7931854
 
 
-GetDecisionOutcomes <- function(Mtemp, Rep = DemocracyRep(Mtemp), ScaledIndex, Verbose=FALSE) {
+GetDecisionOutcomes <- function(Mtemp, Rep, ScaledIndex, Verbose=FALSE) {
   # Determines the Outcomes of Decisions based on the provided reputation (weighted vote)
     
   if(Verbose) { print("****************************************************") ; print("Begin 'GetDecisionOutcomes'")}
@@ -190,7 +179,7 @@ GetDecisionOutcomes <- function(Mtemp, Rep = DemocracyRep(Mtemp), ScaledIndex, V
 # [1] 1.0000000 0.7000000 0.5000000 0.1000000 0.5820690 0.6517202
 
 
-FillNa <- function(Mna, Rep = DemocracyRep(Mna), ScaledIndex = BinaryScales(Mna), CatchP=.1, Verbose=FALSE) { 
+FillNa <- function(Mna, Rep, ScaledIndex, CatchP=.1, Verbose=FALSE) { 
   # Uses exisiting data and reputations to fill missing observations.
   # Essentially a weighted average using all availiable non-NA data.
   # How much should slackers who arent voting suffer? I decided this would depend on the global percentage of slacking.
@@ -265,7 +254,7 @@ FillNa <- function(Mna, Rep = DemocracyRep(Mna), ScaledIndex = BinaryScales(Mna)
 
 
 #Putting it all together:
-Factory <- function(M0, Scales = BinaryScales(M0), Rep = DemocracyRep(M0), CatchP=.1, MaxRow=5000, Verbose=FALSE) {
+Factory <- function(M0, Scales, Rep, CatchP=.1, MaxRow=5000, Verbose=FALSE) {
   # Main Routine
 
   ScaledIndex=as.logical( Scales["Scaled",] )
@@ -532,7 +521,7 @@ Factory <- function(M0, Scales = BinaryScales(M0), Rep = DemocracyRep(M0), Catch
 
 
 #Long-Term
-Chain <- function(X, Scales = BinaryScales(X), N = 2, ThisRep = DemocracyRep(X)) {
+Chain <- function(X, Scales, N = 2, ThisRep) {
   # Repeats factory process N times
 
   Output <- vector("list")
@@ -546,7 +535,7 @@ Chain <- function(X, Scales = BinaryScales(X), N = 2, ThisRep = DemocracyRep(X))
 
 # Double-Factory (much more reliable)
 
-DoubleFactory <- function(X, Scales = BinaryScales(X), Rep = DemocracyRep(X), CatchP=.1, MaxRow=5000, Phi=.65, Verbose=FALSE) {
+DoubleFactory <- function(X, Scales, Rep, CatchP=.1, MaxRow=5000, Phi=.65, Verbose=FALSE) {
   # see http://forum.truthcoin.info/index.php/topic,102.msg289.html#msg289
   
   WaveOne <- Factory(X,Scales,Rep,CatchP,MaxRow,Verbose)
