@@ -3,7 +3,7 @@
 
 if(!exists("Factory")) print("You have not loaded ConsensusMechanism.r")
 
-PlotJ <- function(M, Scales = BinaryScales(M), Rep = DemocracyRep(M), Title="Plot of Judgement Space") { 
+PlotJ <- function(M, Scales = BinaryScales(M), Title="Plot of Judgement Space") { 
   
   suppressMessages( require(ggplot2) )
   suppressMessages( require(reshape2) )
@@ -15,7 +15,7 @@ PlotJ <- function(M, Scales = BinaryScales(M), Rep = DemocracyRep(M), Title="Plo
   }
   
   # Use the SVD-Consensus
-  Results <- Factory(M, Scales, Rep, CatchP=0)
+  Results <- Factory(M, Scales, CatchP=0)
   
   # Get Dimensions and Labels (who voted for what?)
   mResults <- melt(Results[["Filled"]])
