@@ -50,6 +50,8 @@ truthcoindemo <- function(csvdata) {
   
   ## Do Computations ##
   
+  Reputation <- ReWeight(rep(1,nrow(RescaledVoteMatrix)))
+  
   # I've already rescaled, but we still need to pass the boolean - must fix this.
   ScaleData <- matrix( c( rep(FALSE,ncol(RescaledVoteMatrix)),
                           rep(0,ncol(RescaledVoteMatrix)),
@@ -58,7 +60,7 @@ truthcoindemo <- function(csvdata) {
   ScaleData[1,] <- Scaled
   
   # Get the Results
-  SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData)
+  SvdResults <- Factory(RescaledVoteMatrix, Scales = ScaleData, Rep = Reputation)
 
   
   cat("\n\n\n\n")
@@ -100,7 +102,7 @@ truthcoindemo <- function(csvdata) {
   
   
   cat("\n\n\n")
-  print(PlotJ(RescaledVoteMatrix, Scales = ScaleData))
+  print(PlotJ(RescaledVoteMatrix, Scales = ScaleData, Rep = Reputation))
   
   invisible()
 }
