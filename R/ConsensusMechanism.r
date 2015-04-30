@@ -8,8 +8,8 @@
 
 
 # To my knowledge, R does not feature 'automatic working directories' unless it is being run as a script
-try(setwd("~/GitHub/truthcoin-private/rlib"))
-source("consensus/CustomMath.r")
+# try(setwd("~/GitHub/truthcoin-private/rlib"))
+# source("consensus/CustomMath.r")
 
 ## Functions:
 
